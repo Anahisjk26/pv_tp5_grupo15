@@ -1,6 +1,10 @@
+import { MainLayout } from "../../layouts/MainLayout"
 import "./StudentDetail.css"
 export const StudentDetail = () => {
   return (
-    <div>StudentDetail</div>
+    <MainLayout>
+
+      <h1>StudentDetail</h1>
+    </MainLayout>
   )
 }
