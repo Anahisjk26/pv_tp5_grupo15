@@ -1,6 +1,11 @@
 import "./HomePage.css"
+
 export const HomePage = () => {
+
+
   return (
-    <div>HomePage</div>
+    <div>
+      <h1 >Presentacion del sistema</h1>
+    </div>
   )
 }
