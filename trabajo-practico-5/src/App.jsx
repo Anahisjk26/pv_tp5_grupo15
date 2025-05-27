@@ -8,8 +8,11 @@ function App() {
 
 
   return (
+    <>
 
-    <HomePage></HomePage>
+      <HomePage></HomePage>
+    </>
+
 
   )
 }

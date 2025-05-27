@@ -21,16 +21,15 @@ export const appRouter = createBrowserRouter([
             {
                 path: "list-students",
                 element: <ListStudents />,
-                children: [
-                    {
-                        path: "student/:id",
-                        element: <StudentDetail />,
-                    },
-                    {
-                        path: "edit-student/:id",
-                        element:<EditStudent />
-                    }
-                ],
+
+            },
+            {
+                path: "students/detail-student/:id",
+                element: <StudentDetail />,
+            },
+            {
+                path: "students/edit-student/:id",
+                element: <EditStudent />
             },
             {
                 path: "create-student",
