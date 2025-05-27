@@ -6,6 +6,7 @@ import { MainLayout } from "./layouts/MainLayout";
 import { ListStudents } from "./pages/listStudents/ListStudents";
 import { StudentDetail } from "./pages/studentDetail/StudentDetail";
 import { CreateStudent } from "./pages/createStudent/CreateStudent";
+import { EditStudent } from "./pages/editStudent/EditStudent";
 import App from "./App";
 
 export const appRouter = createBrowserRouter([
@@ -25,12 +26,18 @@ export const appRouter = createBrowserRouter([
                         path: "student/:id",
                         element: <StudentDetail />,
                     },
+                    {
+                        path: "edit-student/:id",
+                        element:<EditStudent />
+                    }
                 ],
             },
             {
                 path: "create-student",
                 element: <CreateStudent />,
-            },
+            }
+
+
         ],
     },
 ]);
