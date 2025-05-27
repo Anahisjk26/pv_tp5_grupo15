@@ -1,0 +1,50 @@
+.snackbar {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: fadein 0.3s, fadeout 0.3s 2.7s;
+  font-size: 14px;
+}
+
+.snackbar-submit {
+  background-color: #166e3b;
+  color: white;
+}
+
+.snackbar-danger {
+  background-color: #e74c3c;
+}
+
+.snackbar-edit {
+  background-color: #3498db;
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
