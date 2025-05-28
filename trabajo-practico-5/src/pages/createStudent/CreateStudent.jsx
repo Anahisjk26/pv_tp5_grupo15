@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import {
   TextField,
   Button,
@@ -9,13 +9,12 @@ import {
 } from "@mui/material";
 import { addAlumno } from "../../components/ui/alumnoService.js";
 import { MaintContext } from "../../layouts/MainLayout.jsx";
-import { useNavigate } from "react-router-dom";
+import { SnackbarComponent } from "../../components/ui/snackbar/Snackbar.jsx";
+
 
 export const CreateStudent = () => {
   const { alumnos, setAlumnos } = useContext(MaintContext);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState("");
-  const navigate = useNavigate();
   const [singleAlumno, setSingleAlumno] = useState({
     Lu: "",
     nombre: "",
@@ -31,7 +30,6 @@ export const CreateStudent = () => {
     const newAlumno = { ...singleAlumno, id: Date.now() };
     const newArray = addAlumno(alumnos, newAlumno);
     setAlumnos(newArray);
-    setSnackbarMessage("Alumno agregado con éxito ✅");
     setOpenSnackbar(true);
     setSingleAlumno({
       Lu: "",
@@ -62,7 +60,7 @@ export const CreateStudent = () => {
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Crear Estudiante
+        Añadir estudiante
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -145,20 +143,15 @@ export const CreateStudent = () => {
           Crear Estudiante
         </Button>
       </form>
-      <Snackbar
+
+      <SnackbarComponent
         open={openSnackbar}
-        autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-      >
-        <Alert
-          onClose={handleCloseSnackbar}
-          severity="success"
-          sx={{ width: "100%" }}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
+        message={"Alumno agregado con éxito"}
+        severity="success"
+        vertical="bottom"
+        horizontal="center"
+      />
     </Container>
   );
 };

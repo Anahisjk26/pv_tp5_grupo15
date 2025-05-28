@@ -1,24 +1,24 @@
-import { useEffect } from "react";
-import "./Snackbar.css";
+import { Snackbar, Alert } from "@mui/material";
 
-export function Snackbar({
-  message,
-  visible,
+export const SnackbarComponent = ({
+  open,
   onClose,
+  message,
+  severity = "success",
   duration = 3000,
-  variant = "submit",
-}) {
-  useEffect(() => {
-    if (visible) {
-      const timer = setTimeout(() => {
-        onClose();
-      }, duration);
-
-      return () => clearTimeout(timer);
-    }
-  }, [visible, duration, onClose]);
-
-  return visible ? (
-    <div className={`snackbar snackbar-${variant}`}>{message}</div>
-  ) : null;
-}
+  vertical = "bottom",
+  horizontal = "right",
+}) => {
+  return (
+    <Snackbar
+      open={open}
+      autoHideDuration={duration}
+      onClose={onClose}
+      anchorOrigin={{ vertical, horizontal }}
+    >
+      <Alert variant="filled" onClose={onClose} severity={severity} sx={{ width: "100%" }}>
+        {message}
+      </Alert>
+    </Snackbar>
+  );
+};
