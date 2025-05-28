@@ -24,11 +24,11 @@ export const appRouter = createBrowserRouter([
 
             },
             {
-                path: "students/detail-student/:id",
+                path: "list-students/detail-student/:id",
                 element: <StudentDetail />,
             },
             {
-                path: "students/edit-student/:id",
+                path: "list-students/edit-student/:id",
                 element: <EditStudent />
             },
             {
