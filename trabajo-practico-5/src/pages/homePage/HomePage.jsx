@@ -1,17 +1,50 @@
+import { useState } from "react";
 import React from "react";
 import {
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-  Typography,
+  // ... importaciones de Material UI
   Grid,
   Container,
   Box,
   CssBaseline,
+  Typography,
 } from "@mui/material";
+import { MiCard } from "../../components/cards/MiCard";
 
 export const HomePage = () => {
+  const cardData = [
+    {
+      accion: "Agregar Alumno",
+      descripcion: "Permite agregar nuevos estudiantes al sistema.",
+      imagen:
+        "https://static.wixstatic.com/media/fb5636_8b1412ac176547298d75b6620dda0945~mv2.jpg/v1/fill/w_528,h_352,al_c,lg_1,q_80,enc_avif,quality_auto/fb5636_8b1412ac176547298d75b6620dda0945~mv2.jpg",
+    },
+    {
+      accion: "Listar Alumnos",
+      descripcion: "Muestra la lista de todos los alumnos registrados.",
+      imagen:
+        "https://media.istockphoto.com/id/1438969575/es/foto/joven-estudiante-universitario-sonriente-con-auriculares-de-pie-en-un-aula.jpg?s=612x612&w=0&k=20&c=vYBEmD-AcLhEbM02BBKtTAFeIS4A0O71_RpS6KtMUk8=",
+    },
+    {
+      accion: "Editar Alumno",
+      descripcion: "Permite modificar la información de un alumno existente.",
+      imagen:
+        "https://www.aauniv.com/s/blog/wp-content/uploads/2020/04/estudiar-online-en-casa-para-universitarios.jpg",
+    },
+    {
+      accion: "Eliminar Alumno",
+      descripcion:
+        "Elimina un alumno del sistema, actualizando la lista de estudiantes.",
+      imagen:
+        "https://media.istockphoto.com/id/475772532/es/foto/tecla-suprimir.jpg?s=612x612&w=0&k=20&c=6zd1ialIP0BB_0NMPnB0gEsjs9x3QKkb6yqdoYq_HSA=",
+    },
+    {
+      accion: "Consultar Alumno",
+      descripcion: "Permite buscar y ver los detalles de un alumno específico.",
+      imagen:
+        "https://imagenes.noticiasrcn.com/ImgNoticias/subsidio-universitarios.webp?w=480",
+    },
+  ];
+
   return (
     <React.Fragment>
       <CssBaseline />
@@ -48,126 +81,15 @@ export const HomePage = () => {
 
       <Container fixed sx={{ mt: 4 }}>
         <Grid container spacing={2} justifyContent="left">
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                maxWidth: 345,
-                padding: 2,
-                backgroundColor: "#f5f5f5",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://media.istockphoto.com/id/1438969575/es/foto/joven-estudiante-universitario-sonriente-con-auriculares-de-pie-en-un-aula.jpg?s=612x612&w=0&k=20&c=vYBEmD-AcLhEbM02BBKtTAFeIS4A0O71_RpS6KtMUk8="
-                  alt="agregar estudiante"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    Agregar
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Gestiona nuevos alumnos, permitiendo que ingresen datos
-                    personales como academicos.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                maxWidth: 345,
-                padding: 2,
-                backgroundColor: "#f5f5f5",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://www.aauniv.com/s/blog/wp-content/uploads/2020/04/estudiar-online-en-casa-para-universitarios.jpg"
-                  alt="editar estudiante"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    Editar
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Modifica datos de alumnos,especificos y se actualiza la
-                    lista con los datos nuevos.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                maxWidth: 345,
-                padding: 2,
-                backgroundColor: "#f5f5f5",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://media.istockphoto.com/id/475772532/es/foto/tecla-suprimir.jpg?s=612x612&w=0&k=20&c=6zd1ialIP0BB_0NMPnB0gEsjs9x3QKkb6yqdoYq_HSA="
-                  alt="eliminar estudiante"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    Eliminar
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Borra alumnos del sistema de una manera comoda actualizando
-                    la lista de estudiantes.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <Card
-              sx={{
-                maxWidth: 345,
-                padding: 2,
-                backgroundColor: "#f5f5f5",
-              }}
-            >
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image="https://static.wixstatic.com/media/fb5636_8b1412ac176547298d75b6620dda0945~mv2.jpg/v1/fill/w_528,h_352,al_c,lg_1,q_80,enc_avif,quality_auto/fb5636_8b1412ac176547298d75b6620dda0945~mv2.jpg"
-                  alt="detalles estudiante"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h6" component="div">
-                    Detalles
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Nos permite ver información detallada del alumno
-                    seleccionado.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
+          {cardData.map((card, index) => (
+            <MiCard
+              key={index}
+              accion={card.accion}
+              descripcion={card.descripcion}
+              imagen={card.imagen}
+            />
+          ))}
         </Grid>
-
-        <style>
-          {`
-          @media (min-width: 0px) {
-            .MuiGrid-container {
-              flex-wrap: nowrap !important;
-              overflow-x: auto;
-            }
-          }
-        `}
-        </style>
       </Container>
     </React.Fragment>
   );
