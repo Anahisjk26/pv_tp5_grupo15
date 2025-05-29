@@ -7,14 +7,15 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import { addAlumno } from "../../components/ui/alumnoService.js";
+import { addAlumno } from "../../services/alumnoService.js";
 import { MaintContext } from "../../layouts/MainLayout.jsx";
 import { SnackbarComponent } from "../../components/ui/snackbar/Snackbar.jsx";
-
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 export const CreateStudent = () => {
   const { alumnos, setAlumnos } = useContext(MaintContext);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbarError, setOpenSnackbarError] = useState(false);
   const [singleAlumno, setSingleAlumno] = useState({
     Lu: "",
     nombre: "",
@@ -27,19 +28,30 @@ export const CreateStudent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newAlumno = { ...singleAlumno, id: Date.now() };
-    const newArray = addAlumno(alumnos, newAlumno);
-    setAlumnos(newArray);
-    setOpenSnackbar(true);
-    setSingleAlumno({
-      Lu: "",
-      nombre: "",
-      apellido: "",
-      curso: "",
-      email: "",
-      domicilio: "",
-      telefono: "",
-    });
+    let band = false;
+    alumnos.map((aumno) => {
+      if (aumno.Lu === singleAlumno.Lu) {
+        band = true;
+      }
+    })
+    if (!band) {
+
+      const newArray = addAlumno(alumnos, singleAlumno);
+      setAlumnos(newArray);
+      setOpenSnackbar(true);
+      setSingleAlumno({
+        Lu: "",
+        nombre: "",
+        apellido: "",
+        curso: "",
+        email: "",
+        domicilio: "",
+        telefono: "",
+      });
+    } else {
+      setOpenSnackbarError(true)
+    }
+
   };
 
   const handleChange = (e) => {
@@ -56,11 +68,16 @@ export const CreateStudent = () => {
     }
     setOpenSnackbar(false);
   };
-
+  const handleCloseSnackbarError = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbarError(false);
+  };
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Añadir estudiante
+      <Typography sx={{ display: "flex", justifyContent: "start", alignItems: "center", gap: "10px" }} variant="h4" component="h1" gutterBottom>
+        Añadir estudiante <PersonAddAlt1Icon fontSize="large"></ PersonAddAlt1Icon>
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -149,6 +166,14 @@ export const CreateStudent = () => {
         onClose={handleCloseSnackbar}
         message={"Alumno agregado con éxito"}
         severity="success"
+        vertical="bottom"
+        horizontal="center"
+      />
+      <SnackbarComponent
+        open={openSnackbarError}
+        onClose={handleCloseSnackbarError}
+        message={" Ya existe un alumno con esa Libreta universitaria, intentelo nuevamente."}
+        severity="warning"
         vertical="bottom"
         horizontal="center"
       />
