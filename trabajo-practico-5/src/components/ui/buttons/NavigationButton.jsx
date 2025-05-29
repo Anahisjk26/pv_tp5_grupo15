@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 
 export const NavigationButton = ({
     onBack = () => { },
@@ -6,11 +7,8 @@ export const NavigationButton = ({
 
 }) => {
     return (
-        <div className="flex justify-between gap-2">
-            <button
-                onClick={onBack}
-                className="inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md text-indigo-500 hover:bg-indigo-50"
-            >
+        <div className="flex cursor-pointer justify-between gap-2">
+            <Button onClick={onBack} variant="outlined"  color="primary" className="flex items-center">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -25,8 +23,8 @@ export const NavigationButton = ({
                         d="M7 16l-4-4m0 0l4-4m-4 4h18"
                     />
                 </svg>
-                <span className="ml-1 font-bold text-lg">{backLabel}</span>
-            </button>
+                <span className="ml-1 font-semibold text-lg">{backLabel}</span>
+           </Button>
 
 
         </div>

@@ -7,6 +7,7 @@ export const MaintContext = createContext();
 
 export const MainLayout = () => {
   const [alumnos, setAlumnos] = useState([]);
+  
   const updateAlumno = (updatedStudent) => {
     const updatedList = alumnos.map((alumno) =>
       alumno.Lu === updatedStudent.Lu ? updatedStudent : alumno

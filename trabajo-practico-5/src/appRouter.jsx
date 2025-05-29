@@ -1,6 +1,6 @@
 import {
     createBrowserRouter,
-} from "react-router";
+} from "react-router-dom";
 
 import { MainLayout } from "./layouts/MainLayout";
 import { ListStudents } from "./pages/listStudents/ListStudents";

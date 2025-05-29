@@ -4,15 +4,12 @@ import { useState, useContext, useEffect } from "react";
 import {
   TextField,
   Button,
-  Snackbar,
-  Alert,
-  Container,
   Typography,
+  Container,
 } from "@mui/material";
 import { MaintContext } from "../../layouts/MainLayout.jsx";
 import { SnackbarComponent } from "../../components/ui/snackbar/Snackbar.jsx";
-import { ActionsTable } from "../../components/table/ActionsTable.jsx";
-
+import EditIcon from '@mui/icons-material/Edit';
 export const EditStudent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -50,19 +47,23 @@ export const EditStudent = () => {
   useEffect(() => {
     // Buscamos el alumno en la lista de alumnos usando el 'id' (que es el Lu)
     const student = alumnos.find((alumno) => alumno.Lu === id);
-    setAlumnoToEdit(student || {});
+    setAlumnoToEdit(student || false);
   }, [id, alumnos]);
 
   if (!alumnoToEdit) {
-    return <div>Cargando datos del alumno...</div>;
+    navigate("/list-students");
+    return null;
+
   }
 
   return (
     <>
       <div className="p-6">
         <NavigationButton onBack={onBack}></NavigationButton>
-        <div>
-          <h1> Editar Estudiante </h1>
+        <Container maxWidth="sm" sx={{ mt: 4 }}>
+          <Typography sx={{ display: "flex", justifyContent: "start", alignItems: "center", gap: "10px" }} variant="h4" component="h1" gutterBottom>
+            Editar estudiante  <EditIcon fontSize="medium"></EditIcon>
+          </Typography>
           <form onSubmit={handleSubmit} className="form-edit">
             <TextField
               onChange={handleChange}
@@ -122,11 +123,11 @@ export const EditStudent = () => {
               margin="normal"
             />
 
-            <Button type="submit" variant="contained">
+            <Button sx={{ mt: 3 }} type="submit" variant="contained">
               Guardar Cambios
             </Button>
           </form>
-        </div>
+        </Container>
       </div>
 
       <SnackbarComponent
