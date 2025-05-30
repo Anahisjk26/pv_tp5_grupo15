@@ -48,9 +48,15 @@ export const TableComponent = ({
     //  logica para editar se aplica en componente EditStudent
     navigate(`/list-students/edit-student/${lu}`)
   }
-  const onDelete = (lu) => {
-    //  logica para eliminar, aqui si se usan services y el setAlumnos
+      
+  //  logica para eliminar, aqui si se usan services y el setAlumnos
+ const onDelete = (lu) => {
+  const confirmacion = confirm("¿Seguro que quieres ELIMINAR este Estudiante?");
+  if (confirmacion) {
+    const nuevosAlumnos = alumnos.filter(alumno => alumno.Lu !== lu);
+    setAlumnos(nuevosAlumnos);
   }
+};
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
