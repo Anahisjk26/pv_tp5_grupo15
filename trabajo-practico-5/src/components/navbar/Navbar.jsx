@@ -21,7 +21,7 @@ const pages = [{ label: 'Home', path: "/" }, { label: 'Estudiantes', path: "/lis
 export const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const navigate = useNavigate();
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
     const location = useLocation();
     const path = location.pathname;
 
@@ -30,17 +30,12 @@ export const Navbar = () => {
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
     };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
+
     // verificar si la ruta es activa o no
     const isActive = (currentPath, targetPath) => {
         if (targetPath === '/') {
