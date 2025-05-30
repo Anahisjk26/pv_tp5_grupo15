@@ -12,7 +12,7 @@ import { ActionsTable } from './ActionsTable';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { MaintContext } from '../../layouts/MainLayout';
-
+import { CustomModal } from '../ui/modal/CustomModal';
 //  Componente principal de tabla
 export const TableComponent = ({
   columns,
@@ -21,17 +21,15 @@ export const TableComponent = ({
 }) => {
 
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[0]);
+  const [rowsPerPage, setRowsPerPage] = useState(rowsPerPageOptions[1]);
   const navigate = useNavigate()
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
-
+  const [openModal, setOpenModal] = useState(false)
   const handleChangePage = (event, newPage) => setPage(newPage);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
+  const [user, setUser] = useState({});
   const visibleRows = rowsPerPage > 0
     ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
     : data;
@@ -48,17 +46,22 @@ export const TableComponent = ({
     //  logica para editar se aplica en componente EditStudent
     navigate(`/list-students/edit-student/${lu}`)
   }
-      
+
   //  logica para eliminar, aqui si se usan services y el setAlumnos
- const onDelete = (lu) => {
-  const confirmacion = confirm("¿Seguro que quieres ELIMINAR este Estudiante?");
-  if (confirmacion) {
-    const nuevosAlumnos = alumnos.filter(alumno => alumno.Lu !== lu);
+  const onDelete = (alumno) => {
+    setOpenModal(true);
+    setUser(alumno)
+
+  };
+  const deleteUser = (user) => {
+
+    const nuevosAlumnos = alumnos.filter(alumno => user.Lu !== alumno.Lu);
+    setOpenModal(false);
     setAlumnos(nuevosAlumnos);
+
   }
-};
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{ mb: 5 }} component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
@@ -76,7 +79,7 @@ export const TableComponent = ({
               {columns.map((col) => (
                 <TableCell sx={{ fontWeight: 400, fontSize: 16 }} key={col.label} align={col.align || 'left'}>
 
-                  {col.label == "Acciones" ? <ActionsTable onDelete={() => onDelete(row.Lu)} onEdit={() => onEdit(row.Lu)} onView={() => onView(row.Lu)}></ActionsTable> : col.label == "Lu" ? `# ${row[col.label]}` : row[col.label]}
+                  {col.label == "Acciones" ? <ActionsTable onDelete={() => onDelete(row)} onEdit={() => onEdit(row.Lu)} onView={() => onView(row.Lu)}></ActionsTable> : col.label == "Lu" ? `# ${row[col.label]}` : row[col.label]}
                 </TableCell>
               ))}
             </TableRow>
@@ -105,6 +108,7 @@ export const TableComponent = ({
           labelRowsPerPage="Filas por página"
           labelDisplayedRows={() => ""}
         />)}
+      <CustomModal button={true} textButton="Eliminar" variantButton="contained" colorButton={"error"} user={user} onClickButon={() => deleteUser(user)} open={openModal} setOpen={setOpenModal} title={"Eliminar alumno"} description={`Seguro que deseas eliminar al alumno ${user.nombre + " " + user.apellido} ?`} ></CustomModal>
     </TableContainer>
   );
 };

@@ -26,9 +26,6 @@ export const StudentDetail = () => {
   return (
     <section className="p-6">
       <NavigationButton onBack={onBack}></NavigationButton>
-      <div>
-        <h1>Perfil del usuario</h1>
-      </div>
       {/* Mostramos el detalle del ALUMNO */}
       <StudentInfo alumno={alumno} />
     </section>
