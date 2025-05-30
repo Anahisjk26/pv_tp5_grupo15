@@ -1,11 +1,11 @@
 import { useState } from "react";
 import React from "react";
 import {
-  // ... importaciones de Material UI
+  // importaciones de MUI
   Grid,
   Container,
   Box,
-  CssBaseline,
+
   Typography,
 } from "@mui/material";
 import { MiCard } from "../../components/cards/MiCard";
@@ -46,8 +46,8 @@ export const HomePage = () => {
   ];
 
   return (
-    <React.Fragment>
-      <CssBaseline />
+    <>
+
       <Box
         sx={{
           backgroundImage: `url('https://media.licdn.com/dms/image/v2/C4E1BAQFAX0CpC7mnew/company-background_10000/company-background_10000/0/1584319529701/facultad_de_ingenieria_unju_cover?e=2147483647&v=beta&t=B30SB46xfrLw2PNDe3R8_7kKy8Fl0rsWoAo5bah7gy4')`,
@@ -79,7 +79,7 @@ export const HomePage = () => {
         siguientes funcionalidades.
       </Typography>
 
-      <Container fixed sx={{ mt: 4 }}>
+      <Container fixed sx={{ my: 5 }}>
         <Grid container spacing={2} justifyContent="left">
           {cardData.map((card, index) => (
             <MiCard
@@ -91,6 +91,6 @@ export const HomePage = () => {
           ))}
         </Grid>
       </Container>
-    </React.Fragment>
+    </>
   );
 };
