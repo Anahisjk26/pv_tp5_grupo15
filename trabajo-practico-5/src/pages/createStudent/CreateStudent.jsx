@@ -7,9 +7,11 @@ import {
   Container,
   Typography,
 } from "@mui/material";
-import { addAlumno } from "../../components/ui/alumnoService.js";
+import { addAlumno } from "../../services/alumnoService.js";
 import { MaintContext } from "../../layouts/MainLayout.jsx";
 import { useNavigate } from "react-router-dom";
+import Selector from "../../components/ui/select/Select.jsx";
+import Input from "../../components/ui/inputs/InputAdd.jsx";
 
 export const CreateStudent = () => {
   const { alumnos, setAlumnos } = useContext(MaintContext);
@@ -25,6 +27,14 @@ export const CreateStudent = () => {
     domicilio: "",
     telefono: "",
   });
+
+  const cursosDisponibles = [
+    { value: "1ro 1ra", label: "1ro 1ra" },
+    { value: "1ro 2da", label: "1ro 2da" },
+    { value: "2do 1ra", label: "2do 1ra" },
+    { value: "3ro 1ra", label: "3ro 1ra" },
+    { value: "4to 1ra", label: "4to 1ra" },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -65,76 +75,68 @@ export const CreateStudent = () => {
         Crear Estudiante
       </Typography>
       <form onSubmit={handleSubmit}>
-        <TextField
-          fullWidth
-          margin="normal"
+        <Input
           id="Lu"
           name="Lu"
-          label="Libreta Universitaria"
+          label="Legajo Único (LU)"
           value={singleAlumno.Lu}
           onChange={handleChange}
           required
+          type="text"
         />
-        <TextField
-          fullWidth
-          margin="normal"
+
+        <Input
           id="nombre"
           name="nombre"
           label="Nombre"
           value={singleAlumno.nombre}
           onChange={handleChange}
           required
+          type="text"
         />
-        <TextField
-          fullWidth
-          margin="normal"
+        <Input
           id="apellido"
           name="apellido"
           label="Apellido"
           value={singleAlumno.apellido}
           onChange={handleChange}
           required
+          type="text"
         />
-        <TextField
-          fullWidth
-          margin="normal"
+        <Selector
           id="curso"
-          name="curso"
           label="Curso"
+          name="curso"
           value={singleAlumno.curso}
           onChange={handleChange}
-          required
+          options={cursosDisponibles}
         />
-        <TextField
-          fullWidth
-          margin="normal"
+        <Input
           id="email"
           name="email"
           label="Email"
-          type="email"
           value={singleAlumno.email}
           onChange={handleChange}
-          required
+          required={true}
+          type="email"
         />
-        <TextField
-          fullWidth
-          margin="normal"
+        <Input
           id="domicilio"
           name="domicilio"
           label="Domicilio"
           value={singleAlumno.domicilio}
           onChange={handleChange}
-          required
+          required={true}
+          type="text"
         />
-        <TextField
-          fullWidth
-          margin="normal"
+        <Input
           id="telefono"
           name="telefono"
           label="Teléfono"
           value={singleAlumno.telefono}
           onChange={handleChange}
-          required
+          required={true}
+          type="text"
         />
         <Button
           type="submit"
