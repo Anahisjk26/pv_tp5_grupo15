@@ -1,4 +1,3 @@
-import React from "react";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 const Selector = ({ id, label, name, value, onChange, options }) => {
