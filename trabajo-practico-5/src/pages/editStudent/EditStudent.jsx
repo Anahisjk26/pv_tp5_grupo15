@@ -10,10 +10,18 @@ import {
 import { MaintContext } from "../../layouts/MainLayout.jsx";
 import { SnackbarComponent } from "../../components/ui/snackbar/Snackbar.jsx";
 import EditIcon from '@mui/icons-material/Edit';
+import Selector from "../../components/ui/select/Select.jsx";
 export const EditStudent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { alumnos, onUpdatedAlumno } = useContext(MaintContext);
+  const context = useContext(MaintContext);
+
+  // Protección por si el contexto es undefined
+  if (!context) {
+    throw new Error("ListStudents debe estar dentro de MaintContext.Provider");
+  }
+
+  const { alumnos, onUpdatedAlumno } = context;
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [alumnoToEdit, setAlumnoToEdit] = useState(null);
 
@@ -45,8 +53,8 @@ export const EditStudent = () => {
   };
 
   useEffect(() => {
-    // Buscamos el alumno en la lista de alumnos usando el 'id' (que es el Lu)
-    const student = alumnos.find((alumno) => alumno.Lu === id);
+    // Buscamos el alumno en la lista de alumnos usando el id (que es el Lu)
+    const student = alumnos?.find((alumno) => alumno.Lu === id);
     setAlumnoToEdit(student || false);
   }, [id, alumnos]);
 
@@ -55,7 +63,23 @@ export const EditStudent = () => {
     return null;
 
   }
-
+  const cursosDisponibles = [
+    { value: "1ro 1ra", label: "1ro 1ra" },
+    { value: "1ro 2da", label: "1ro 2da" },
+    { value: "1ro 3ra", label: "1ro 3ra" },
+    { value: "2do 1ra", label: "2do 1ra" },
+    { value: "2do 2da", label: "2do 2da" },
+    { value: "2do 3ra", label: "2do 3ra" },
+    { value: "3ro 1ra", label: "3ro 1ra" },
+    { value: "3ro 2da", label: "3ro 2da" },
+    { value: "3ro 3ra", label: "3ro 3ra" },
+    { value: "4to 1ra", label: "4to 1ra" },
+    { value: "4to 2da", label: "4to 2da" },
+    { value: "4to 3ra", label: "4to 3ra" },
+    { value: "5to 1ra", label: "5to 1ra" },
+    { value: "5to 2da", label: "5to 2da" },
+    { value: "5to 3ra", label: "5to 3ra" }
+  ];
   return (
     <>
       <div className="p-6">
@@ -90,13 +114,13 @@ export const EditStudent = () => {
               fullWidth
               margin="normal"
             />
-            <TextField
-              onChange={handleChange}
-              value={alumnoToEdit?.curso || ""}
-              label="Curso :"
+            <Selector
+              id="curso"
+              label="Curso"
               name="curso"
-              fullWidth
-              margin="normal"
+              value={alumnoToEdit?.curso}
+              onChange={handleChange}
+              options={cursosDisponibles}
             />
             <TextField
               onChange={handleChange}
