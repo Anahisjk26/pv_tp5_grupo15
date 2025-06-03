@@ -62,26 +62,39 @@ export const TableComponent = ({
   }
   return (
     <TableContainer sx={{ mb: 5 }} component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+      <Table sx={{ minWidth: 300 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            {columns.map((col) => (
-              <TableCell sx={{ fontWeight: 600 }} key={col.label} align={col.align || 'left'}>
-                {col.label.toUpperCase()}
-              </TableCell>
-            ))}
+            {columns.map((col) => {
+              if (col.label === "domicilio" || col.label === "telefono" || col.label === "email") {
+                return null;
+              } else {
+                return (
+                  <TableCell sx={{ fontWeight: 600 }} key={col.label} align={col.align || 'left'}>
+                    {col.label.toUpperCase()}
+                  </TableCell>
+                );
+              }
+            })}
           </TableRow>
         </TableHead>
 
         <TableBody>
           {visibleRows.map((row, index) => (
             <TableRow key={index}>
-              {columns.map((col) => (
-                <TableCell sx={{ fontWeight: 400, fontSize: 16 }} key={col.label} align={col.align || 'left'}>
+              {columns.map((col) => {
+                if (col.label === "domicilio" || col.label === "telefono" || col.label === "email") {
+                  return null;
+                } else {
+                  return (
+                    <TableCell sx={{ fontWeight: 400, fontSize: 16 }} key={col.label} align={col.align || 'left'}>
 
-                  {col.label == "Acciones" ? <ActionsTable onDelete={() => onDelete(row)} onEdit={() => onEdit(row.Lu)} onView={() => onView(row.Lu)}></ActionsTable> : col.label == "Lu" ? `# ${row[col.label]}` : row[col.label]}
-                </TableCell>
-              ))}
+                      {col.label == "Acciones" ? <ActionsTable onDelete={() => onDelete(row)} onEdit={() => onEdit(row.Lu)} onView={() => onView(row.Lu)}></ActionsTable> : col.label == "Lu" ? `# ${row[col.label]}` : row[col.label]}
+                    </TableCell>
+                  )
+                }
+
+              })}
             </TableRow>
           ))}
 
