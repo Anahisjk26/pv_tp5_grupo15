@@ -18,7 +18,7 @@ export const EditStudent = () => {
 
   // Protección por si el contexto es undefined
   if (!context) {
-    throw new Error("ListStudents debe estar dentro de MaintContext.Provider");
+    return null
   }
 
   const { alumnos, onUpdatedAlumno } = context;
@@ -82,7 +82,7 @@ export const EditStudent = () => {
   ];
   return (
     <>
-      <div className="p-6">
+      <div className="p-6 animate-fade-in-down">
         <NavigationButton onBack={onBack}></NavigationButton>
         <Container maxWidth="sm" sx={{ mt: 4 }}>
           <Typography sx={{ display: "flex", justifyContent: "start", alignItems: "center", gap: "10px" }} variant="h4" component="h1" gutterBottom>
