@@ -9,10 +9,17 @@ import "./StudentDetail.css"
 export const StudentDetail = () => {
   const navigate = useNavigate()
   // se usa useParams 
+  const context = useContext(MaintContext);
+
+  // Protección por si el contexto es undefined
+  if (!context) {
+    throw new Error("ListStudents debe estar dentro de MaintContext.Provider");
+  }
+
 
   const { id } = useParams()
   const { alumnos } = useContext(MaintContext)
-  
+
   // BUSCAMOS AL ALUMNO POR SU LU
   const alumno = alumnos.find(a => a.Lu.toString() === id)
 
