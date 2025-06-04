@@ -21,7 +21,10 @@ export const MainLayout = () => {
       value={{ alumnos, setAlumnos, onUpdatedAlumno: updateAlumno }}
     >
       <Navbar />
+
+
       <Outlet /> {/* Aqui se renderizann las páginas hijas */}
+
     </MaintContext.Provider>
   );
 };

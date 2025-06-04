@@ -10,7 +10,7 @@ export const ListStudents = () => {
 
   // Protección por si el contexto es undefined
   if (!context) {
-    throw new Error("ListStudents debe estar dentro de MaintContext.Provider");
+    return null
   }
 
   const { alumnos } = context;
@@ -40,7 +40,7 @@ export const ListStudents = () => {
   ];
 
   return (
-    <div className="w-full justify-center items-center px-6 lg:px-56 mt-16">
+    <div className="w-full justify-center items-center px-6 lg:px-56 mt-16 animate-fade-in-down">
       <Typography sx={{ display: "flex", mb: 4, justifyContent: "start", alignItems: "center", gap: "10px" }} variant="h4" component="h1" gutterBottom>
         Lista de Estudiantes <GroupsIcon fontSize="large"></GroupsIcon>
       </Typography>

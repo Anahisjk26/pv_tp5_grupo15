@@ -13,9 +13,8 @@ export const StudentDetail = () => {
 
   // Protección por si el contexto es undefined
   if (!context) {
-    throw new Error("ListStudents debe estar dentro de MaintContext.Provider");
+    return null
   }
-
 
   const { id } = useParams()
   const { alumnos } = useContext(MaintContext)
@@ -31,7 +30,7 @@ export const StudentDetail = () => {
 
   }
   return (
-    <section className="p-6">
+    <section className="p-6 animate-fade-in-down">
       <NavigationButton onBack={onBack}></NavigationButton>
       {/* Mostramos el detalle del ALUMNO */}
       <StudentInfo alumno={alumno} />

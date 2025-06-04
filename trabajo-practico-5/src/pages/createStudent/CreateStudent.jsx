@@ -18,9 +18,8 @@ export const CreateStudent = () => {
 
   // Protección por si el contexto es undefined
   if (!context) {
-    throw new Error("ListStudents debe estar dentro de MaintContext.Provider");
+    return null
   }
-
   const { alumnos, setAlumnos } = context;
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [messageError, setMessageError] = useState("");
@@ -105,8 +104,12 @@ export const CreateStudent = () => {
     setOpenSnackbarError(false);
   };
   return (
+
+
     <Container maxWidth="sm" sx={{ mt: 4 }}>
+
       <Typography
+        className="animate-fade-in-down"
         sx={{
           display: "flex",
           justifyContent: "start",
@@ -120,7 +123,7 @@ export const CreateStudent = () => {
         Añadir estudiante{" "}
         <PersonAddAlt1Icon fontSize="large"></PersonAddAlt1Icon>
       </Typography>
-      <form onSubmit={handleSubmit}>
+      <form className="animate-fade-in-down" onSubmit={handleSubmit}>
         <Input
           id="Lu"
           name="Lu"
@@ -212,6 +215,8 @@ export const CreateStudent = () => {
         vertical="bottom"
         horizontal="center"
       />
+
     </Container>
+
   );
 };

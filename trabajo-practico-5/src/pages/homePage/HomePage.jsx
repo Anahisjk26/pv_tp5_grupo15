@@ -46,9 +46,10 @@ export const HomePage = () => {
   ];
 
   return (
-    <>
+    <div className="animate-fade-in-down">
 
       <Box
+
         sx={{
           backgroundImage: `url('https://media.licdn.com/dms/image/v2/C4E1BAQFAX0CpC7mnew/company-background_10000/company-background_10000/0/1584319529701/facultad_de_ingenieria_unju_cover?e=2147483647&v=beta&t=B30SB46xfrLw2PNDe3R8_7kKy8Fl0rsWoAo5bah7gy4')`,
           backgroundSize: "cover",
@@ -91,6 +92,6 @@ export const HomePage = () => {
           ))}
         </Grid>
       </Container>
-    </>
+    </div>
   );
 };
