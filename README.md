@@ -22,6 +22,7 @@ Aplicación web desarrollada con React y Vite que permite gestionar estudiantes 
 
 # Caracteristicas de la aplicacion 
 - La aplicación cuenta con un Layout principal que centraliza la gestión del estado de los alumnos.
+- Diseño responsive en toda la aplicacion web . 
 - Se implementa una arquitectura modular siguiendo los principios de Clean Code, lo que facilita el mantenimiento y la escalabilidad.
 - El arreglo de alumnos y sus funciones asociadas (agregar, editar, eliminar, buscar) se gestionan desde el componente principal y se distribuyen eficientemente a los componentes hijos.
 - Se hace uso de componentes reutilizables y separación lógica entre vistas y lógica de negocio.
